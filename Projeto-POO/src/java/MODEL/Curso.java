@@ -4,33 +4,38 @@ import java.util.ArrayList;
 
 public class Curso {
 
-    public static ArrayList<Curso> list = new ArrayList<>();
-    
-    public String curso;
-    public int cargaHoraria;
-    public String horario;
-    public String modulo;
-    public double preco;
-       
-    public Curso() {
-        this.setCurso("[Novo]");
+    private static ArrayList<Curso> list = new ArrayList<>();
+
+    private int idCurso;
+    private String curso;
+    private int cargaHoraria;
+    private String horario;
+    private String modulo;
+    private double preco;
+
+    public static ArrayList<Curso> getList() {
+        return list;
     }
-    //construtor
-    public Curso(String curso, int cargaHoraria, String horario, String modulo, double preco) {
+
+    public static void setList(ArrayList<Curso> aList) {
+        list = aList;
+    }
+
+    public Curso(int idCurso, String curso, int cargaHoraria, String horario, String modulo, double preco) {
+        this.idCurso = idCurso;
         this.curso = curso;
         this.cargaHoraria = cargaHoraria;
         this.horario = horario;
         this.modulo = modulo;
         this.preco = preco;
     }
-    //getter/setter
-    
-    public static ArrayList<Curso> getList() {
-        return list;
+
+    public int getIdCurso() {
+        return idCurso;
     }
 
-    public static void setList(ArrayList<Curso> list) {
-        Curso.list = list;
+    public void setIdCurso(int idCurso) {
+        this.idCurso = idCurso;
     }
 
     public String getCurso() {
@@ -71,5 +76,6 @@ public class Curso {
 
     public void setPreco(double preco) {
         this.preco = preco;
-    }       
+    }
+
 }
