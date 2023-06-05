@@ -6,10 +6,12 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletConfig;
 import java.io.BufferedReader;
 import org.json.JSONObject;
 
 import MODEL.TaskAluno;
+import java.util.ArrayList;
 import org.json.JSONArray;
 
 @WebServlet(name = "TasksAlunoServlet", urlPatterns = {"/tasksAluno"})
@@ -39,7 +41,13 @@ public class TasksAlunoServlet extends HttpServlet {
         JSONObject file = new JSONObject();
         
         try {
-              file.put("list", new JSONArray(TaskAluno.list));
+            file.put("exception", TaskAluno.exception);
+            ArrayList<TaskAluno> list = TaskAluno.getList();
+            JSONArray arr = new JSONArray();
+            for(TaskAluno t : list){
+                arr.put(t.getNomeAluno());
+            }
+            file.put("list", arr);
         } catch (Exception ex) {
             response.setStatus(500);
             file.put("error", ex.getLocalizedMessage());
@@ -65,10 +73,14 @@ public class TasksAlunoServlet extends HttpServlet {
             JSONObject body = getJSONBody(request.getReader());
             String nomeAluno = body.getString("nomeAluno");
             if (nomeAluno != null) {
-                TaskAluno t = new TaskAluno(nomeAluno);
-                TaskAluno.list.add(t);
+                TaskAluno.addTask(nomeAluno);
             }
-            file.put("list", new JSONArray(TaskAluno.list));
+            ArrayList<TaskAluno> list = TaskAluno.getList();
+            JSONArray arr = new JSONArray();
+            for(TaskAluno t : list){
+                arr.put(t.getClass());
+            }
+            file.put("list", arr);
         } catch (Exception ex) {
             response.setStatus(500);
             file.put("error", ex.getLocalizedMessage());
@@ -83,17 +95,13 @@ public class TasksAlunoServlet extends HttpServlet {
         
         try {
             String nomeAluno = request.getParameter("nomeAluno");
-            int i = -1;
-                for (TaskAluno t : TaskAluno.list) {
-                    if (t.getNomeAluno().equals(nomeAluno)) {
-                        i = TaskAluno.list.indexOf(t);
-                        break;
-                    }
+            TaskAluno.removeTask(nomeAluno);
+            ArrayList<TaskAluno> list = TaskAluno.getList();
+            JSONArray arr =  new JSONArray();
+                for (TaskAluno t : list) {
+                    arr.put(t.getNomeAluno());
                 }
-                if (i > -1) {
-                    TaskAluno.list.remove(i);
-                }
-                file.put("list", new JSONArray(TaskAluno.list));
+                file.put("list", arr);
         } catch (Exception ex) {
             response.setStatus(500);
             file.put("error", ex.getLocalizedMessage());
@@ -110,5 +118,11 @@ public class TasksAlunoServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+    
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        TaskAluno.createTable();
+    }
 
 }
