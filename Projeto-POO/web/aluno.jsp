@@ -32,8 +32,8 @@
                         this.newTask = '';
                         this.list = data.list;
                     });
-                }, async removeTasks(taskTitle){
-                    request("/Projeto-POO/tasksAluno?nomeAluno="+taskTitle, "DELETE").then((data)=>{
+                }, async removeTasks(taskAluno){
+                    request("/Projeto-POO/tasksAluno?nomeAluno="+taskAluno, "DELETE").then((data)=>{
                         this.list = data.list;
                     });
                 }
@@ -58,7 +58,7 @@
             <template x-for="task in list">
                 <tr>
                     <td>
-                        <button type="button" x-on:click="removeTasks(tasksAluno:nomeAluno)" class="btn btn-danger btn-sm">Done</button>
+                        <button type="button" x-on:click="removeTasks(tasksAluno:nomeAluno)" class="btn btn-danger btn-sm">Excluir</button>
                         <span x-text="task.nomeAluno"></span>
                     </td>
                 </tr>
