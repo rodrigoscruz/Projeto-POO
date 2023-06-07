@@ -1,0 +1,6 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<button type="button"><a href="matricula.jsp"> Matricula </a></button>
+<button type="button"><a href="aluno.jsp"> Aluno </a></button>
+<button type="button"><a href="turma.jsp"> Turma </a></button>
+

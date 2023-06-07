@@ -12,13 +12,7 @@
 </head>
 <body>
 
-<button type="button"><a href="aluno.jsp"> Aluno </a></button>
-<button type="button"><a href="responsavel.jsp"> Responsável </a></button>
-<button type="button"><a href="curso.jsp"> Curso </a></button>
-<button type="button"><a href="matricula.jsp"> Matricula </a></button>
-<button type="button"><a href="turma.jsp"> Turma </a></button>
-<button type="button"><a href="professor.jsp"> Professor </a></button>
-
+<%@include file="WEB-INF/jspf/header.jspf" %>
 
 </body>
 </html>

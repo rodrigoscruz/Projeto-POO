@@ -45,9 +45,51 @@
        
     </script> 
     
-<h1>Turma</h1>
+<nav class="navbar bg-body-tertiary">
+        <div class="container-fluid"> 
+            <span class="navbar-brand mb-0 h1">Cadastro de Turma</span>
+        </div>
+    </nav>
 
-
+<nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+    <form action="/action_page.php">
+        <div class="mb-3">
+            <label for="email" class="form-label">Nome:</label>
+            <input type="text" class="form-control" id="nomeTurma" placeholder="Nome da Turma" name="nomeTurma">
+        </div>
+        <div class="mb-3">
+            <label for="idioma">Idioma:</label>
+            <select id="idioma" name="idioma">
+              <option value="ingles">Inglês</option>
+              <option value="espanhol">Espanhou</option>
+              <option value="frances">Francês</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="cargaHoraria" class="form-label">Carga Horária:</label>
+            <input type="number" class="form-control" id="cargaHoraria" placeholder="Carga horária do curso" name="cargaHoraria">
+        </div>
+        <div class="mb-3">
+            <label for="professor" class="form-label">Professor:</label>
+            <input type="text" class="form-control" id="professor" placeholder="Nome do Professor" name="professor">
+        </div>
+        <div class="mb-3">
+            <label for="horarioInicioAula" class="form-label">Horario de Inicio:</label>
+            <input type="number" class="form-control" id="horarioInicioAula" placeholder="horário de início da aula" name="horarioInicioAula">
+        </div>
+        <div class="mb-3">
+            <label for="horarioTerminoAula" class="form-label">Horario de Término:</label>
+            <input type="number" class="form-control" id="horarioTerminoAula" placeholder="horário de término da aula" name="horarioTerminoAula">
+        </div>
+        <div class="mb-3">
+            <label for="valor" class="form-label">Valor do Curso:</label>
+            <input type="number" class="form-control" id="valor" placeholder="Valor total do curso" name="valor">
+        </div>
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+        </div>
+    </nav> 
             
 </body>
 </html>
