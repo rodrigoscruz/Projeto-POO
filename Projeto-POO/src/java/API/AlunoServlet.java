@@ -10,12 +10,12 @@ import jakarta.servlet.ServletConfig;
 import java.io.BufferedReader;
 import org.json.JSONObject;
 
-import MODEL.TaskAluno;
+import MODEL.Aluno;
 import java.util.ArrayList;
 import org.json.JSONArray;
 
-@WebServlet(name = "TasksAlunoServlet", urlPatterns = {"/tasksAluno"})
-public class TasksAlunoServlet extends HttpServlet {
+@WebServlet(name = "AlunoServlet", urlPatterns = {"/alunos"})
+public class AlunoServlet extends HttpServlet {
 
    private JSONObject getJSONBody(BufferedReader reader) throws Exception {
         StringBuilder buffer = new StringBuilder();
@@ -41,10 +41,10 @@ public class TasksAlunoServlet extends HttpServlet {
         JSONObject file = new JSONObject();
         
         try {
-            file.put("exception", TaskAluno.exception);
-            ArrayList<TaskAluno> list = TaskAluno.getList();
+            file.put("exception", Aluno.exception);
+            ArrayList<Aluno> list = Aluno.getList();
             JSONArray arr = new JSONArray();
-            for(TaskAluno t : list){
+            for(Aluno t : list){
                 arr.put(t.getNomeAluno());
             }
             file.put("list", arr);
@@ -73,11 +73,11 @@ public class TasksAlunoServlet extends HttpServlet {
             JSONObject body = getJSONBody(request.getReader());
             String nomeAluno = body.getString("nomeAluno");
             if (nomeAluno != null) {
-                TaskAluno.addTask(nomeAluno);
+                Aluno.addTask(nomeAluno);
             }
-            ArrayList<TaskAluno> list = TaskAluno.getList();
+            ArrayList<Aluno> list = Aluno.getList();
             JSONArray arr = new JSONArray();
-            for(TaskAluno t : list){
+            for(Aluno t : list){
                 arr.put(t.getClass());
             }
             file.put("list", arr);
@@ -95,10 +95,10 @@ public class TasksAlunoServlet extends HttpServlet {
         
         try {
             String nomeAluno = request.getParameter("nomeAluno");
-            TaskAluno.removeTask(nomeAluno);
-            ArrayList<TaskAluno> list = TaskAluno.getList();
+            Aluno.removeTask(nomeAluno);
+            ArrayList<Aluno> list = Aluno.getList();
             JSONArray arr =  new JSONArray();
-                for (TaskAluno t : list) {
+                for (Aluno t : list) {
                     arr.put(t.getNomeAluno());
                 }
                 file.put("list", arr);
@@ -122,7 +122,7 @@ public class TasksAlunoServlet extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-        TaskAluno.createTable();
+        Aluno.createTable();
     }
 
 }

@@ -4,7 +4,7 @@ package MODEL;
 import java.util.ArrayList;
 import java.sql.*;
 
-public class TaskAluno {
+public class Aluno {
     public static final String CLASS_NAME = "org.sqlite.JDBC";
     public static final String URL = "jdbc.sqlite:to-do.db";    
     public static Exception exception = null;
@@ -27,13 +27,13 @@ public class TaskAluno {
         return DriverManager.getConnection(URL);
     }
     
-    public static ArrayList<TaskAluno> getList() throws Exception {
-        ArrayList<TaskAluno> list = new ArrayList<>();
+    public static ArrayList<Aluno> getList() throws Exception {
+        ArrayList<Aluno> list = new ArrayList<>();
         Connection con = getConnection();
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery("select * from tasks");
         while(rs.next()){
-            list.add(new TaskAluno(rs.getString("title")));
+            list.add(new Aluno(rs.getString("title")));
         }
         rs.close();
         stmt.close();
@@ -60,14 +60,14 @@ public class TaskAluno {
     }
     
     
-    public static ArrayList<TaskAluno> list = new ArrayList<>();
+    public static ArrayList<Aluno> list = new ArrayList<>();
     public String nomeAluno;
 
-    public TaskAluno() {
+    public Aluno() {
         this.setNomeAluno("[Novo]");
     }
 
-    public TaskAluno(String nomeAluno) {
+    public Aluno(String nomeAluno) {
         this.nomeAluno = nomeAluno;
     }
 
@@ -75,8 +75,8 @@ public class TaskAluno {
         return list;
     }*/
 
-    public static void setList(ArrayList<TaskAluno> list) {
-        TaskAluno.list = list;
+    public static void setList(ArrayList<Aluno> list) {
+        Aluno.list = list;
     }
 
     public String getNomeAluno() {
