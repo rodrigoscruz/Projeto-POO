@@ -36,7 +36,7 @@
 
 <body>
     <%@include file="/WEB-INF/jspf/header.jspf" %>
-<h1>Cadastro de Aluno</h1>
+<h1>Cadastro de Matricula</h1>
     <div class="container">
         <div class="row justify-content-center mt-4">
             <div class="col-md-6">
