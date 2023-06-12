@@ -35,6 +35,41 @@
     </style>
 </head>
 <body>
+    <script>
+        async function request(url = "", methd, data) {
+            const response = await fetch(url, {
+                method: methd,
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(data)
+            });
+            return response.json();
+        }
+        
+        function taskAluno(){
+            return {
+                newTask: '',
+                list: [],
+                async loadTasks(){
+                    request("/Projeto-POO/tasksAluno", "GET").then((data)=>{
+                        this.list = data.list;
+                    });
+                }, async addTasks(){
+                    request("/Projeto-POO/tasksAluno", "POST", {nomeAluno: this.newTask}).then((data)=>{
+                        this.newTask = '';
+                        this.list = data.list;
+                    });
+                }, async removeTasks(taskAluno){
+                    request("/Projeto-POO/tasksAluno?nomeAluno="+taskAluno, "DELETE").then((data)=>{
+                        this.list = data.list;
+                    });
+                }
+            };
+        }
+       
+    </script> 
+    
+    
+    
     <h1>Cadastro de Aluno</h1>
     <div class="card">
         <form action="/action_page.php">
